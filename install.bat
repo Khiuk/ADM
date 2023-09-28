@@ -120,3 +120,32 @@ start "\\avp\KSCShare\PkgInst\NetAgent_13.0.0.11247_KES_11.8.0.384\installer.exe
 pause
 echo Готово
 
+echo Вы хотите установить программу "Directum"? (y/n)
+choice /c yn /n /m "Выберите y или n:"
+
+if errorlevel 2 goto No
+if errorlevel 1 goto Yes
+
+:Yes
+echo Вы выбрали установку программы.
+start "\\edo\ClientLite\5.8.5\Client.exe"
+goto End
+
+:No
+echo Вы выбрали отказ от установки программы.
+goto End
+
+echo Вы хотите установить программу "Крипто-Про 4.0"? (y/n)
+choice /c yn /n /m "Выберите y или n:"
+
+if errorlevel 2 goto No
+if errorlevel 1 goto Yes
+
+:Yes
+echo Вы выбрали установку программы.
+start "\\law\base\Distrib\ЭЦП\Настройка рабочего места\CryptoPRO 4.09963\CSPSetup.exe"
+goto End
+
+:No
+echo Вы выбрали отказ от установки программы.
+goto End
