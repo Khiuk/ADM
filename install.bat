@@ -18,7 +18,6 @@ echo Удаление диска "Y"
 
 echo Добавление сетевых дисков
 
-
 echo Добавление диска "Х" для доступа к программе "Консультант +"
 @net use x: \\cons\consplus
 
@@ -65,35 +64,35 @@ pause
 echo Установка приложений
 
 echo Установка драйверов Рутокен
-start /wait "\\law\base\Distrib\ЭЦП\Настройка рабочего места\rtDrivers.exe"
+start /wait "" "\\law\base\Distrib\ЭЦП\Настройка рабочего места\rtDrivers.exe"
 echo Готово
 
 echo Установка плагина Крипто-ПРО
-start /wait "\\law\base\Distrib\ЭЦП\Настройка рабочего места\cadesplugin.exe"
+start /wait "" "\\law\base\Distrib\ЭЦП\Настройка рабочего места\cadesplugin.exe"
 echo Готово
 
 echo Плагин для Гос.услуги
-start /wait "\\law\base\Distrib\ЭЦП\Настройка рабочего места\IFCPlugin-x64.msi"
+start /wait "" "\\law\base\Distrib\ЭЦП\Настройка рабочего места\IFCPlugin-x64.msi"
 echo Готово
 
 echo Установка 7-zip
-start /wait "P:\Distrib\7zip 19.00\7z1900-x64 /S"
+start /wait "" "\\law\base\Distrib\7zip 19.00\7z1900-x64.exe" /S
 echo Готово
 
 echo Установка Яндекс Браузер
-start /wait "\\law\base\Distrib\ЭЦП\Настройка рабочего места\Yandex.exe"
+start /wait "" "\\law\base\Distrib\ЭЦП\Настройка рабочего места\Yandex.exe"
 echo Готово
 
 echo Установка K-Lite Codek Pack
-start /wait "\\law\base\Distrib\K-Lite Codek Pack 15.6.0\K-Lite_Codec_Pack_1560_Full.exe /verysilent" 
+start /wait "" "\\law\base\Distrib\K-Lite Codek Pack 15.6.0\K-Lite_Codec_Pack_1560_Full.exe" /verysilent
 echo Готово
 
 echo Установка Google Chrome
-start /wait "\\law\Distrib\ChromeStandaloneSetup64.exe"
+start /wait "" "\\law\base\Distrib\ChromeStandaloneSetup64.exe"
 echo Готово
 
 echo Установка Консультант плюс
-start /wait "\\cons\ConsPlus\CONS.EXE"
+start /wait "" "\\cons\ConsPlus\CONS.EXE"
 pause
 echo Готово
 
@@ -111,41 +110,65 @@ copy "\\law\base\Гарант Проксима.url" "%USERPROFILE%\Desktop\"
 echo Готово
 
 echo Установка MS Office 2019
-start "\\law\base\Distrib\MS Office 2019 Standart\Start.bat"
+cd /d "P:\Distrib\MS Office 2019 Standart"
+start Start.bat
 pause
 echo Готово
 
 echo Установка Kaspersky Endpoint Security
-start "\\avp\KSCShare\PkgInst\NetAgent_14.0.0.10902_KES_11.8.0.384(1)\installer.exe"
+start "" "\\avp\KSCShare\PkgInst\NetAgent_14.0.0.10902_KES_11.8.0.384(1)\installer.exe"
 pause
 echo Готово
 
 echo Вы хотите установить программу "Directum"? (y/n)
 choice /c yn /n /m "Выберите y или n:"
 
-if errorlevel 2 goto No
-if errorlevel 1 goto Yes
+if errorlevel 2 goto NoDirectum
+if errorlevel 1 goto YesDirectum
 
-:Yes
-echo Вы выбрали установку программы.
-start "\\edo\ClientLite\5.8.5\Client.exe"
+:YesDirectum
+echo Вы выбрали установку программы Directum.
+start "" "\\edo\ClientLite\5.8.5\Client.exe"
+goto DirectumEnd
+
+:NoDirectum
+echo Вы выбрали отказ от установки программы Directum.
+
+:DirectumEnd
+echo Продолжаем выполнение сценария...
+pause
+
+echo Вы хотите установить надстройку для Directum? (y/n)
+choice /c yn /n /m "Выберите y или n:"
+
+if errorlevel 2 goto NoDirectumAddOn
+if errorlevel 1 goto YesDirectumAddOn
+
+:YesDirectumAddOn
+echo Вы выбрали установку надстройки для Directum.
+msiexec /i "\\edo\ClientLite\5.8.5\OfficeIntegration.msi"
 goto End
 
-:No
-echo Вы выбрали отказ от установки программы.
-goto End
+:NoDirectumAddOn
+echo Вы выбрали отказ от установки надстройки для Directum.
+
+:End
+echo Продолжаем выполнение сценария...
+pause
 
 echo Вы хотите установить программу "Крипто-Про 4.0"? (y/n)
 choice /c yn /n /m "Выберите y или n:"
 
-if errorlevel 2 goto No
-if errorlevel 1 goto Yes
+if errorlevel 2 goto NoCryptoPro
+if errorlevel 1 goto YesCryptoPro
 
-:Yes
-echo Вы выбрали установку программы.
-start "\\law\base\Distrib\ЭЦП\Настройка рабочего места\CryptoPRO 4.09963\CSPSetup.exe"
+:YesCryptoPro
+echo Вы выбрали установку программы Crypto-Pro.
+start "" "\\law\base\Distrib\ЭЦП\Настройка рабочего места\CryptoPRO 4.09963\CSPSetup.exe"
 goto End
 
-:No
-echo Вы выбрали отказ от установки программы.
-goto End
+:NoCryptoPro
+echo Вы выбрали отказ от установки программы Crypto-Pro.
+
+:End
+pause
