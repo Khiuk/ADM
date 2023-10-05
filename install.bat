@@ -116,7 +116,7 @@ pause
 echo Готово
 
 echo Установка Kaspersky Endpoint Security
-start "\\avp\KSCShare\PkgInst\NetAgent_13.0.0.11247_KES_11.8.0.384\installer.exe"
+start "\\avp\KSCShare\PkgInst\NetAgent_14.0.0.10902_KES_11.8.0.384(1)\installer.exe"
 pause
 echo Готово
 
