@@ -14,12 +14,15 @@ apt install fly-admin-ad-sssd-client
 mkdir /mnt/network_disk
 mount -o username=inform1 //law/base/Distrib /mnt/network_disk
 
-# Kaspersky Install
+# Kaspersky .deb Install
 
 dpkg -i /mnt/network_disk/KESL11_11.3.0.7508\(ФСТЭК\)_643.46856491.00049-11/kesl/kesl_11.3.0-7508.cert_amd64.deb
 wait
 dpkg -i /mnt/network_disk/KESL11_11.3.0.7508\(ФСТЭК\)_643.46856491.00049-11/klnagent/klnagent64_14.0.0-4646_amd64.deb
 wait
+
+# Kaspersky Postinstall Scripts Running
+
 /opt/kaspersky/kesl/bin/kesl-setup.pl
 wait
 /opt/kaspersky/klnagent64/lib/bin/setup/postinstall.pl
