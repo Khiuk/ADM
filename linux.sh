@@ -9,6 +9,12 @@ sudo apt install fish
 
 apt install fly-admin-ad-sssd-client
 
+# Yandex Browser Install
+apt install yandex-browser-stable
+
+# xRDP Install
+apt install xrdp
+
 # Disk Mount
 
 mkdir /mnt/network_disk
